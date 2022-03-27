@@ -2,6 +2,10 @@
 
 <img src="screenshot.png" width="200px">
 
+## How it works
+
+The script pulls all 5 letter words from any webpage and uses them for a game of Wordle
+
 ## How to use:
 
 Two ways to play:
