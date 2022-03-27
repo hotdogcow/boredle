@@ -7,7 +7,7 @@
 Two ways to play:
 
 - Copy and paste either boredle.js or bordle.min.js into your browser's console
-- Use the tampermonkey chrome extension to run the script on every page (or specific pages using @match) using the boredle-tampermonkey.js file
+- Use the [tampermonkey chrome extension](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) to run the script on every page using @match *://*/* 
 
 ## Features:
 
