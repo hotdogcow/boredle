@@ -11,7 +11,7 @@ The script pulls all 5 letter words from any webpage and uses them for a game of
 Two ways to play:
 
 - Copy and paste either boredle.js or bordle.min.js into your browser's console
-- Use the [tampermonkey chrome extension](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) to run the script on every page using @match *://*/* 
+- Use the [tampermonkey chrome extension](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) to run the script on every page using @match https://*
 
 ## Features:
 
