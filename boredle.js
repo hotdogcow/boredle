@@ -1,7 +1,5 @@
+(() => {
 //create the boredle
-
-
-
 let d = document
 let currentRow = 0
 let streak = 0
@@ -35,7 +33,7 @@ let increase = createAppendElement("button", "id", "increase", styles["increase"
 let pin = createAppendElement("button", "id", "pin", styles["pin"], bTitle)
 pin.innerText = "📌"
 //streak
-let streakEl = createAppendElement("p", "class", "boredle-streak", "position:absolute;font-size:12px;left:0;right:0;margin:auto;top:-20px;text-align:center;color:black;max-width:100px;", bWindow)
+let streakEl = createAppendElement("p", "class", "boredle-streak", "position:absolute;font-size:12px;left:0;right:0;margin:auto;top:-20px;text-align:center;color:black;max-width:100px;background:white;", bWindow)
 streakEl.innerText = `Streak: ${streak}`
 
 //boredle body
@@ -313,4 +311,4 @@ function postMessage(messageText, duration, callback){
     message.innerText = messageText
     setTimeout(() => {message.remove();callback()}, duration)
 }
-
+})()
