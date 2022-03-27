@@ -4,7 +4,7 @@
 
 ## How it works
 
-The script pulls all 5 letter words from any webpage and uses them for a game of Wordle
+The script pulls all 5 letter words from any webpage and uses them for a game of Wordle. Perfect for use on text-heavy sites like wikipedia using tampermonkey's @match feature. Example: @match https://en.wikipedia.org/*
 
 ## How to use:
 
