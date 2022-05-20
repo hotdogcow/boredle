@@ -1,6 +1,6 @@
 # boredle - a small script to play Wordle anywhere on the web
 
-<img src="screenshot3.png" width="220px">
+<img src="boredle.gif" width="220px">
 
 ## How it works
 
