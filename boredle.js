@@ -7,7 +7,7 @@ let styles = {
     "none": "",
     "message": "display:flex;position:absolute;top:0;right:0;left:0;margin:auto;top:25%;width:fit-content;text-align:center;height:auto;background:white;border:1px solid black;color:black;",
     "bWindow": "display: flex;flex-direction: column;position: fixed;background: white;border-radius: 5px;overflow:none;box-shadow: 0px 12px 26px -9px rgba(189, 189, 189, 1);-webkit-box-shadow: 0px 12px 26px -9px rgba(189, 189, 189, 1);transition: min-width .25s, min-height .25s;z-index: 999999;min-width:200px;min-height:300px;bottom:20px;right:20px;",
-    "bTitle": "display:flex;width:100%;height:25px;background:green;flex-direction:row;justify-content:space-between;align-items:center;background:rgb(202,202,202);background:linear-gradient(0deg, rgba(202,202,202,1) 0%, rgba(202,202,202,1) 80%, rgba(232,233,232,1) 100%);border-bottom:1px solid darkgrey;",
+    "bTitle": "display:flex;width:100%;height:25px;background:green;border-top-left-radius:5px;border-top-right-radius:5px;flex-direction:row;justify-content:space-between;align-items:center;background:rgb(202,202,202);background:linear-gradient(0deg, rgba(202,202,202,1) 0%, rgba(202,202,202,1) 80%, rgba(232,233,232,1) 100%);border-bottom:1px solid darkgrey;",
     "bButtons": "padding:0 5px;display:flex;justify-content:center;align-items:center;",
     "bButtonsButton": "display:flex;width:15px;height:15px;justify-content:center;align-items:center;border-radius:50%;border:1px solid darkgrey;margin:0 5px;text-align:center;padding:0;",
     "decrease": "background:rgb(246,244,22);padding-bottom:1px;cursor:pointer;",
@@ -17,7 +17,7 @@ let styles = {
     "bBoardCell": "border:1px solid #d3d6da;margin:2px;justify-content:center;align-items:center;display:flex;width:22px;height:22px;font-size:16px;color:black;background:white;transition:background 1s;font-family:Arial;",
     "bKeyboard": "margin-top:10px;",
     "bKeyboardRow": "height:auto;width:100%;display:flex;justify-content:center;align-items:center;",
-    "bKeyboardKey": "margin:1%;justify-content:center;align-items:center;display:flex;background:#d3d6da;width:16px;height:18px;font-size:14px;cursor:pointer;color:black;font-family:Arial;"
+    "bKeyboardKey": "margin:1%;justify-content:center;align-items:center;display:flex;background:#d3d6da;width:16px;height:22px;padding:4px;border-radius:3px;font-size:14px;cursor:pointer;color:black;font-family:Arial;"
 }
 
 //window
@@ -197,9 +197,9 @@ enter.addEventListener("click", (e) => {
             let letter = pendingArray[i]
             if (wordArray[i] === letter){
                 wordObj[letter] = wordObj[letter] - 1;
-                pendings[i].style.background = "green"
+                pendings[i].style.background = "#6aaa64"
                 pendings[i].style.color = "white"
-                bKeyboardKey.style.background = "green"
+                bKeyboardKey.style.background = "#6aaa64"
                 bKeyboardKey.style.color = "white"
                 pendings[i].setAttribute("class", "correct")
             } else if (wordArray.indexOf(letter) !== -1 && wordObj[letter] > 0){
@@ -212,7 +212,7 @@ enter.addEventListener("click", (e) => {
             } else {
                 pendings[i].style.background = "grey"
                 pendings[i].style.color = "white"
-                if (bKeyboardKey.style.background !== "green" && bKeyboardKey.style.background !== "yellow"){
+                if (bKeyboardKey.style.background !== "#6aaa64" && bKeyboardKey.style.background !== "#c9b458"){
                     bKeyboardKey.style.background = "#787c7e"
                     bKeyboardKey.style.color = "white"
                 }
