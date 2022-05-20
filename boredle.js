@@ -3,7 +3,6 @@
 let d = document
 let currentRow = 0
 let streak = 0
-
 let styles = {
     "none": "",
     "message": "display:flex;position:absolute;top:0;right:0;left:0;margin:auto;top:25%;width:fit-content;text-align:center;height:auto;background:white;border:1px solid black;color:black;",
@@ -13,14 +12,12 @@ let styles = {
     "bButtonsButton": "display:flex;width:15px;height:15px;justify-content:center;align-items:center;border-radius:50%;border:1px solid darkgrey;margin:0 5px;text-align:center;padding:0;",
     "decrease": "background:rgb(246,244,22);padding-bottom:1px;cursor:pointer;",
     "increase": "background: rgb(4, 177, 4);cursor:pointer;",
-    "pin": "margin-right: 10px;",
     "bBoard": "display:flex;width:100%;flex-direction:column;margin:0 auto;",
     "bBoardRow": "height:auto;width:100%;display:flex;justify-content:center;align-items:center;",
     "bBoardCell": "border:1px solid black;margin:2px;justify-content:center;align-items:center;display:flex;width:22px;height:22px;font-size:16px;color:black;background:white;transition:background 1s;",
     "bKeyboard": "margin-top:10px;",
     "bKeyboardRow": "height:auto;width:100%;display:flex;justify-content:center;align-items:center;",
     "bKeyboardKey": "margin:1%;justify-content:center;align-items:center;display:flex;background:lightgrey;width:16px;height:18px;font-size:14px;cursor:pointer;color:black;"
-
 }
 
 //window
@@ -30,8 +27,6 @@ let bTitle = createAppendElement("div", "class", "boredle-title", styles["bTitle
 let bButtons = createAppendElement("div", "class", "boredle-buttons", styles["bButtons"], bTitle)
 let decrease = createAppendElement("button", "id", "decrease", styles["decrease"] + styles["bButtonsButton"], bButtons)
 let increase = createAppendElement("button", "id", "increase", styles["increase"] + styles["bButtonsButton"], bButtons)
-let pin = createAppendElement("button", "id", "pin", styles["pin"], bTitle)
-pin.innerText = "📌"
 //streak
 let streakEl = createAppendElement("p", "class", "boredle-streak", "position:absolute;font-size:12px;left:0;right:0;margin:auto;top:-20px;text-align:center;color:black;max-width:100px;background:white;", bWindow)
 streakEl.innerText = `Streak: ${streak}`
@@ -86,12 +81,11 @@ let enter = bKeyboardKeys[27]
 enter.removeAttribute("class")
 enter.innerText = "➔"
 enter.setAttribute("style", enter.getAttribute("style") + "background: rgb(66, 211, 66);color: white;")
-
 bKeyboardKeys.splice(19, 1)
 bKeyboardKeys.splice(26, 1)
 
 
-//create word list, 5 characters each, no special characters, no 
+//create word list, 5 characters each, no special characters
 let bWordList = []
 
 for (let el of d.querySelectorAll("h1, h2, h3, h4, h5, h6, p, a, ul, ol, span, div")){
@@ -140,7 +134,6 @@ increase.addEventListener("click", () => {
 })
 
 //decrease button action
-
 decrease.addEventListener("click", () => {
     if (bWindow.style.minWidth != "100px"){
         bWindow.style.minWidth = `${parseInt(bWindow.style.minWidth.replace("px", "")) - 50}px`
@@ -151,22 +144,7 @@ decrease.addEventListener("click", () => {
     }
 })
 
-//pin button action
-
-pin.addEventListener("click", (e) => {
-    if (e.target.getAttribute("pinned") == "true"){
-        bWindow.style.position = "fixed"
-        bWindow.style.top = `${parseInt(bWindow.style.top.replace("px", "")) - window.scrollY}px`
-        e.target.setAttribute("pinned", "false")
-    } else {
-        bWindow.style.position = "absolute"
-        bWindow.style.top = `${window.scrollY + parseInt(bWindow.style.top.replace("px", ""))}px`
-        pin.setAttribute("pinned", "true")
-    }
-})
-
 //shorter query function
-
 function f(x, bool = false){
     if (bool){
         return d.querySelectorAll(x)
@@ -176,7 +154,6 @@ function f(x, bool = false){
 }
 
 //game functions
-
 for (let el of bKeyboardKeys){
     el.addEventListener("click", (e) => {
         if (f(".pending", true).length < 5){
@@ -190,7 +167,6 @@ for (let el of bKeyboardKeys){
 }
 
 backspace.addEventListener("click", () => {
-
     let pendings = f(".pending", true)
 
     if (pendings.length > 0){
@@ -199,78 +175,48 @@ backspace.addEventListener("click", () => {
         lastPending.setAttribute("class", "empty")
     } else {
         postMessage("The row is empty...", 1000, () => {return 1})
-        
     }
 })
 
 enter.addEventListener("click", (e) => {
     if (f(".pending", true).length == 5){
-        
         let pendings = f(".pending", true)
         let pendingArray = Array.from(f(".pending", true)).map(x => x.innerText)
         let wordArray = bWord.split("")
         let keyboardLetters = Array.from(bKeyboardKeys).map(x => x.innerText)
 
-        let greenObj = {}
-        let yellowObj = {}
-        for (let i = 0; i < bWord.length; i++){
-            greenObj[bWord[i]] = greenObj[bWord[i]] ? greenObj[bWord[i]] + 1 : 1
-            yellowObj[bWord[i]] = yellowObj[bWord[i]] ? yellowObj[bWord[i]] + 1 : 1
+        let wordObj = {}
+        for (let i = 0; i < 5; i++){
+            if (wordArray[i] !== pendingArray[i]){
+                wordObj[wordArray[i]] = wordObj[wordArray[i]] ? wordObj[wordArray[i]] + 1 : 1;
+            }
         }
 
         for (let i = 0; i < pendingArray.length; i++){
             let bKeyboardKey = bKeyboardKeys[keyboardLetters.indexOf(pendingArray[i])]
-            if (pendingArray[i] == wordArray[i]){
-
-                if (greenObj[pendingArray[i]] > 0){
-                    pendings[i].style.background = "green"
-                    bKeyboardKey.style.background = "green"
-                    pendings[i].setAttribute("class", "correct")
-                    greenObj[pendingArray[i]] = greenObj[pendingArray[i]] - 1
-                    yellowObj[pendingArray[i]] = yellowObj[pendingArray[i]] - 1
-                } else {
-                    pendings[i].style.background = "grey"
-                    if (bKeyboardKey.style.background !== "green" && bKeyboardKey.style.background !== "yellow"){
-                        bKeyboardKey.style.background = "grey"
-                    }
-                    pendings[i].setAttribute("class", "outword")
-                }
-
-            } else if (wordArray.indexOf(pendingArray[i]) != -1 && wordArray[i] !== pendingArray[i]){
-
-                if (yellowObj[pendingArray[i]] > 0){
-                    pendings[i].style.background = "yellow"
-                    if (bKeyboardKey.style.background !== "green"){
-                        bKeyboardKey.style.background = "yellow"
-                    }
-                    pendings[i].setAttribute("class", "inword")
-                    yellowObj[pendingArray[i]] = yellowObj[pendingArray[i]] - 1
-                } else {
-                    pendings[i].style.background = "grey"
-                    if (bKeyboardKey.style.background !== "green" && bKeyboardKey.style.background !== "yellow"){
-                        bKeyboardKey.style.background = "grey"
-                    }
-                    pendings[i].setAttribute("class", "outword")
-                }
-
+            let letter = pendingArray[i]
+            if (wordArray[i] === letter){
+                wordObj[letter] = wordObj[letter] - 1;
+                pendings[i].style.background = "green"
+                bKeyboardKey.style.background = "green"
+                pendings[i].setAttribute("class", "correct")
+            } else if (wordArray.indexOf(letter) !== -1 && wordObj[letter] > 0){
+                wordObj[letter] = wordObj[letter] - 1;
+                pendings[i].style.background = "yellow"
+                bKeyboardKey.style.background = "yellow"
+                pendings[i].setAttribute("class", "inword")
             } else {
-                
                 pendings[i].style.background = "grey"
-                if (bKeyboardKey.style.background !== "green" && bKeyboardKey.style.background !== "yellow"){
+                if (bKeyboardKey.style.background == "lightgrey"){
                     bKeyboardKey.style.background = "grey"
                 }
                 pendings[i].setAttribute("class", "outword")
-            
             }
-
         }
-
+        
         if (bBoardRows[currentRow].querySelectorAll(".correct").length == 5 ){
-            //you win
-
             postMessage("Nice! You win!", 2000, () => {clear();currentRow=0})
             streakEl.innerText = `Streak: ${++streak}`
-
         } else if (currentRow == 5 && bBoardRows[currentRow].querySelectorAll(".empty").length == 0){
             postMessage(`The word was "${bWord}"`, 3000, () => {clear();currentRow=0})
             streak = 0
@@ -294,7 +240,6 @@ function clear(){
 
     for (let el of bKeyboardKeys){
         el.style.background = "lightgrey"
-
     }
 
     if (bWordList.length !== 0) {
@@ -303,7 +248,6 @@ function clear(){
     } else {
         postMessage("Out of words!", 60000, () => {bWindow.remove()})
     }
-
 }
 
 function postMessage(messageText, duration, callback){
