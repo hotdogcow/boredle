@@ -1,6 +1,6 @@
 # boredle - a small script to play Wordle anywhere on the web
 
-<img src="screenshot2.png" width="200px">
+<img src="screenshot3.png" width="220px">
 
 ## How it works
 
@@ -12,3 +12,8 @@ Two ways to play:
 
 - Copy and paste either boredle.js or bordle.min.js into your browser's console
 - Use the [tampermonkey chrome extension](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) to run the script on every page using @match https://*
+
+## Future features
+
+- Use of word-bank (want to avoid calling additional resources, but hardcoding would increase the size of the program tremendously)
+- Share feature
