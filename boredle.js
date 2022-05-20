@@ -6,7 +6,7 @@ let streak = 0
 let styles = {
     "none": "",
     "message": "display:flex;position:absolute;top:0;right:0;left:0;margin:auto;top:25%;width:fit-content;text-align:center;height:auto;background:white;border:1px solid black;color:black;",
-    "bWindow": "display: flex;flex-direction: column;position: fixed;background: white;border-radius: 5px;overflow: hidden;box-shadow: 0px 12px 26px -9px rgba(189, 189, 189, 1);-webkit-box-shadow: 0px 12px 26px -9px rgba(189, 189, 189, 1);transition: min-width .25s, min-height .25s;z-index: 999999;min-width:200px;min-height:300px;bottom:20px;right:20px;",
+    "bWindow": "display: flex;flex-direction: column;position: fixed;background: white;border-radius: 5px;overflow:none;box-shadow: 0px 12px 26px -9px rgba(189, 189, 189, 1);-webkit-box-shadow: 0px 12px 26px -9px rgba(189, 189, 189, 1);transition: min-width .25s, min-height .25s;z-index: 999999;min-width:200px;min-height:300px;bottom:20px;right:20px;",
     "bTitle": "display:flex;width:100%;height:25px;background:green;flex-direction:row;justify-content:space-between;align-items:center;background:rgb(202,202,202);background:linear-gradient(0deg, rgba(202,202,202,1) 0%, rgba(202,202,202,1) 80%, rgba(232,233,232,1) 100%);border-bottom:1px solid darkgrey;",
     "bButtons": "padding:0 5px;display:flex;justify-content:center;align-items:center;",
     "bButtonsButton": "display:flex;width:15px;height:15px;justify-content:center;align-items:center;border-radius:50%;border:1px solid darkgrey;margin:0 5px;text-align:center;padding:0;",
