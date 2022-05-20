@@ -241,11 +241,13 @@ function clear(){
     for (let el of bBoardCells){
         el.setAttribute("class", "empty")
         el.style.background = "white"
+        el.style.color = "black"
         el.innerText = ""
     }
 
     for (let el of bKeyboardKeys){
         el.style.background = "#d3d6da"
+        el.style.color = "black"
     }
 
     if (bWordList.length !== 0) {
